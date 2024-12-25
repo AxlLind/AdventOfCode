@@ -1,7 +1,7 @@
 use hashbrown::HashMap;
 use itertools::Itertools;
 
-fn val<'a>(g: &HashMap<&'a str, (&'a str, &'a str, &'a str)>, s: &mut HashMap<&'a str, bool>, n: &'a str) -> bool {
+fn val<'a>(g: &HashMap<&str, (&'a str, &str, &'a str)>, s: &mut HashMap<&'a str, bool>, n: &'a str) -> bool {
     if let Some(&v) = s.get(n) {
         return v;
     }
