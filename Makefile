@@ -20,7 +20,7 @@ help:
 	@echo 'Automatically downloads input, sets up files, and runs solutions.'
 	@echo
 	@echo 'TARGET:'
-	@echo '  DAY       run a specific day in $(lastword $(YEARS))', e.g 07
-	@echo '  YEAR-DAY  run a specific day, e.g 2018-09'
-	@echo '  YEAR-all  run all days, e.g 2022-all'
+	@echo '  DAY       run a specific day from $(lastword $(YEARS)) (e.g 0.7)'
+	@echo '  YEAR-DAY  run a specific day           (e.g 2018-09)'
+	@echo '  YEAR-all  run all days                 (e.g 2022-all)'
 	@echo "During the AoC month just 'make' will run the current day's"
