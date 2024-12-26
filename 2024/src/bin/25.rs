@@ -1,3 +1,14 @@
+fn fits(l: &[&[u8]], k: &[&[u8]]) -> bool {
+    for r in 0..l.len() {
+        for c in 0..l[0].len() {
+            if l[r][c] == b'#' && k[r][c] == b'#' {
+                return false;
+            }
+        }
+    }
+    true
+}
+
 #[aoc::main(25)]
 fn main(input: &str) -> (usize, char) {
     let mut locks = Vec::new();
@@ -13,17 +24,7 @@ fn main(input: &str) -> (usize, char) {
     let mut p1 = 0;
     for l in &locks {
         for k in &keys {
-            let mut ok = true;
-            for r in 0..l.len() {
-                for c in 0..l[0].len() {
-                    if l[r][c] == b'#' && k[r][c] == b'#' {
-                        ok = false;
-                    }
-                }
-            }
-            if ok {
-                p1 += 1;
-            }
+            p1 += fits(&l, &k) as usize;
         }
     }
     (p1, '🎄')
