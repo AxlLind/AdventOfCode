@@ -7,6 +7,11 @@ if [[ $# != 2 ]]; then
   exit 1
 fi
 
+if [[ ! "$1" =~ ^20(1[5-9]|2[0-9])$ ]]; then
+  echo "Not a valid year: $1"
+  exit 1
+fi
+
 if [[ ! "$2" =~ ^(0[1-9]|1[0-9]|2[0-5])$ ]]; then
   echo "Not a valid day: $2"
   exit 1
