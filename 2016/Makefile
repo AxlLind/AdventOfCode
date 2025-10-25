@@ -9,6 +9,3 @@ $(DAYS): %: inputs/%.in
 	dune exec --release src/$*.exe
 
 all: $(DAYS)
-
-help:
-	@$(MAKE) --no-print-directory -C .. help

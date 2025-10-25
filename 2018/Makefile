@@ -9,6 +9,3 @@ $(DAYS): %: inputs/%.in
 	python3 src/$*.py
 
 all: $(DAYS)
-
-help:
-	@$(MAKE) --no-print-directory -C .. help

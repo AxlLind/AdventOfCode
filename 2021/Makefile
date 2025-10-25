@@ -13,6 +13,3 @@ $(DAYS): %: src/bin/%.rs inputs/%.in
 
 all: $(patsubst %,inputs/%.in,$(DAYS))
 	cargo run --quiet --release
-
-help:
-	@$(MAKE) --no-print-directory -C .. help

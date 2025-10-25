@@ -12,6 +12,3 @@ $(DAYS): %: inputs/%.in src/%
 	./src/$*
 
 all: $(DAYS)
-
-help:
-	@$(MAKE) --no-print-directory -C .. help

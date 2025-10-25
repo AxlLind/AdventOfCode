@@ -9,6 +9,3 @@ $(DAYS): %: inputs/%.in
 	clj -M src/$*.clj
 
 all: $(DAYS)
-
-help:
-	@$(MAKE) --no-print-directory -C .. help
