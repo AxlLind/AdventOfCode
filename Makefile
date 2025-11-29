@@ -1,11 +1,11 @@
 YEARS   := $(wildcard 20*)
+YEAR    := $(lastword $(YEARS))
 DAYS    := 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
 TARGETS := $(foreach year,$(YEARS),$(addprefix $(year)-,$(DAYS)) $(year)-all)
+TODAY   := $(shell TZ=America/New_York date +%Y%m%d)
 .PHONY: $(DAYS) $(TARGETS) help
 
 # if today is an AOC-day set it as the default goal
-TODAY := $(shell TZ=America/New_York date +%Y%m%d)
-YEAR  := $(lastword $(YEARS))
 .DEFAULT_GOAL := $(or $(filter $(TODAY:$(YEAR)12%=%),$(DAYS)),help)
 
 $(DAYS): %: $(YEAR)-%
