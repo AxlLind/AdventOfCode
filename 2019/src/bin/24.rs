@@ -49,7 +49,7 @@ fn count_neighbours(bugs: &HashSet<(u8,u8,i32)>) -> HashMap<(u8,u8,i32),usize> {
 
   macro_rules! neighbour_to {
     ($x:expr, $y:expr, $z:expr) => {
-      *count.entry(($x,$y,$z)).or_insert(0) += 1;
+      *count.entry(($x,$y,$z)).or_insert(0) += 1
     }
   }
 
