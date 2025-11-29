@@ -1,0 +1,3 @@
+# AdventOfCode2025 :christmas_tree:
+Solutions to AoC 2025 in Rust :crab: TODO...
+
