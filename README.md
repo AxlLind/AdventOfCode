@@ -6,6 +6,7 @@ Mostly in Rust :crab:
 ## Languages
 Year | Language
 ---- | --------
+2025 | Rust
 2024 | Rust
 2023 | Rust
 2022 | Rust
