@@ -15,7 +15,7 @@ fn main(input: &str) -> (usize, usize) {
         for i in a..=b {
             let s = i.to_string();
             if s.len() % 2 == 0 && invalid(s.as_bytes(), s.len() / 2) {
-                p1 += i
+                p1 += i;
             }
             if (1..=s.len() / 2).any(|k| invalid(s.as_bytes(), k)) {
                 p2 += i;
