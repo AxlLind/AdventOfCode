@@ -1,16 +1,17 @@
+const D: [(i64, i64); 8] = [
+    (-1, -1), (-1, 0), (-1, 1),
+    ( 0, -1),          ( 0, 1),
+    ( 1, -1), ( 1, 0), ( 1, 1),
+];
+
 fn round(m: &mut [Vec<u8>], remove: bool) -> usize {
-    let dd = [
-        (-1, -1), (-1, 0), (-1, 1),
-        ( 0, -1),          ( 0, 1),
-        ( 1, -1), ( 1, 0), ( 1, 1),
-    ];
     let mut res = 0;
     for r in 0..m.len() {
         for c in 0..m[0].len() {
             if m[r][c] != b'@' {
                 continue;
             }
-            let n = dd.iter().filter(|&&(dr, dc)|
+            let n = D.iter().filter(|&&(dr, dc)|
                 m.get((r as i64 + dr) as usize)
                     .and_then(|row| row.get((c as i64 + dc) as usize))
                     .is_some_and(|&x| x == b'@')
