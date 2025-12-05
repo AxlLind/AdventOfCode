@@ -18,13 +18,10 @@ fn main(input: &str) -> (usize, usize) {
         }
     }
 
-    let mut p1 = 0;
-    for l in s2.split('\n') {
+    let p1 = s2.split('\n').filter(|l| {
         let x = l.parse().unwrap();
-        if ranges.iter().any(|&(a, b)| (a..=b).contains(&x)) {
-            p1 += 1;
-        }
-    }
+        ranges.iter().any(|&(a, b)| (a..=b).contains(&x))
+    }).count();
     let p2 = merged.iter().map(|&(a, b)| b - a + 1).sum();
     (p1, p2)
 }
