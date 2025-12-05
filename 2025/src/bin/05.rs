@@ -11,7 +11,7 @@ fn main(input: &str) -> (usize, usize) {
     let mut merged = Vec::from([ranges[0]]);
     for &(a, b) in &ranges[1..] {
         let &(a2, b2) = merged.last().unwrap();
-        if a > a2 {
+        if a > b2 {
             merged.push((a, b));
         } else {
             *merged.last_mut().unwrap() = (a2, b2.max(b));
