@@ -2,12 +2,8 @@ fn ans(problems: &[Vec<usize>], ops: &[u8]) -> usize {
     let mut ans = 0;
     for (p, o) in problems.iter().zip(ops) {
         match o {
-            b'*' => {
-                ans += p.iter().product::<usize>();
-            }
-            b'+' => {
-                ans += p.iter().sum::<usize>();
-            }
+            b'*' => ans += p.iter().product::<usize>(),
+            b'+' => ans += p.iter().sum::<usize>(),
             _ => unreachable!()
         }
     }
