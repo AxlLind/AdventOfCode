@@ -2,7 +2,7 @@
 name = "aoc"
 version = "0.1.0"
 authors = ["Axel Lindeberg"]
-edition = "2021"
+edition = "2024"
 default-run = "aoc"
 
 [lib]
