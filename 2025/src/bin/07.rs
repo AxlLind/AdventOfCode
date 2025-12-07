@@ -3,7 +3,6 @@ use hashbrown::HashMap;
 #[aoc::main(07)]
 fn main(input: &str) -> (usize, usize) {
     let m = input.split('\n').map(str::as_bytes).collect::<Vec<_>>();
-
     let start = m[0].iter().position(|&c| c == b'S').unwrap();
     let mut beams = HashMap::from([((0, start), 1)]);
     let mut p1 = 0;
