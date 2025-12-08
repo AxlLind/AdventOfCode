@@ -14,10 +14,7 @@ struct DisjointSet {
 
 impl DisjointSet {
     fn new(n: usize) -> Self {
-        Self {
-            parent: (0..n).collect(),
-            sizes: vec![1; n],
-        }
+        Self { parent: (0..n).collect(), sizes: vec![1; n] }
     }
 
     fn find(&mut self, x: usize) -> usize {
