@@ -47,10 +47,7 @@ fn main(input: &str) -> (usize, usize) {
     let mut g = HashMap::<usize, HashSet<usize>>::new();
     let (mut p1, mut p2) = (0, 0);
     for i in 0.. {
-        let (mut a, mut b) = dist_pairs.pop().unwrap();
-        while g.get(&a).is_some_and(|n| n.contains(&b)) {
-            (a, b) = dist_pairs.pop().unwrap();
-        }
+        let (a, b) = dist_pairs.pop().unwrap();
         g.entry(a).or_default().insert(b);
         g.entry(b).or_default().insert(a);
 
