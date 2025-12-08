@@ -1,12 +1,5 @@
 use itertools::Itertools;
 
-type Point = (usize, usize, usize);
-
-fn dist((x1, y1, z1): Point, (x2, y2, z2): Point) -> usize {
-    // we dont have to sqrt for sorting to still work
-    (x2 - x1).pow(2) + (y2 - y1).pow(2) + (z2 - z1).pow(2)
-}
-
 struct DisjointSet {
     parent: Vec<usize>,
     sizes: Vec<usize>,
@@ -50,10 +43,14 @@ fn main(input: &str) -> (usize, usize) {
         let (x, rest) = l.split_once(',').unwrap();
         let (y, z) = rest.split_once(',').unwrap();
         (x.parse().unwrap(), y.parse().unwrap(), z.parse().unwrap())
-    }).collect::<Vec<Point>>();
+    }).collect::<Vec<(usize, usize, usize)>>();
 
-    let mut dist_pairs = (0..xs.len()).tuple_combinations().collect::<Vec<(usize, usize)>>();
-    dist_pairs.sort_by_key(|&(i, j)| dist(xs[i], xs[j]));
+    let mut dist_pairs = (0..xs.len()).tuple_combinations().collect::<Vec<_>>();
+    dist_pairs.sort_by_key(|&(i, j)| {
+        let (x1, y1, z1) = xs[i];
+        let (x2, y2, z2) = xs[j];
+        (x2 - x1).pow(2) + (y2 - y1).pow(2) + (z2 - z1).pow(2)
+    });
     dist_pairs.reverse();
 
     let mut ds = DisjointSet::new(xs.len());
