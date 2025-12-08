@@ -58,7 +58,6 @@ fn main(input: &str) -> (usize, usize) {
         if i == 1000 {
             components.sort();
             p1 = components[components.len() - 3..].iter().product();
-            println!("{}", p1);
         }
         if components[0] == xs.len() {
             p2 = xs[a].0 * xs[b].0;
