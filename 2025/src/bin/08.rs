@@ -7,12 +7,12 @@ fn dist((x1, y1, z1): Point, (x2, y2, z2): Point) -> usize {
     (x2 - x1).pow(2) + (y2 - y1).pow(2) + (z2 - z1).pow(2)
 }
 
-struct UnionFindSet {
+struct DisjointSet {
     parent: Vec<usize>,
     sizes: Vec<usize>,
 }
 
-impl UnionFindSet {
+impl DisjointSet {
     fn new(n: usize) -> Self {
         Self {
             parent: (0..n).collect(),
@@ -59,17 +59,17 @@ fn main(input: &str) -> (usize, usize) {
     dist_pairs.sort_by_key(|&(i, j)| dist(xs[i], xs[j]));
     dist_pairs.reverse();
 
-    let mut uf = UnionFindSet::new(xs.len());
+    let mut ds = DisjointSet::new(xs.len());
     let (mut p1, mut p2) = (0, 0);
     for i in 0.. {
         let (a, b) = dist_pairs.pop().unwrap();
-        uf.union(a, b);
+        ds.union(a, b);
         if i == 1000 {
-            let mut components = uf.sizes.clone();
+            let mut components = ds.sizes.clone();
             components.sort();
             p1 = components[components.len() - 3..].iter().product();
         }
-        if uf.comp_size(a) == xs.len() {
+        if ds.comp_size(a) == xs.len() {
             p2 = xs[a].0 * xs[b].0;
             break;
         }
