@@ -9,22 +9,17 @@ fn is_point_on_line(px: isize, py: isize, x1: isize, y1: isize, x2: isize, y2: i
     (py >= y1.min(y2) && py <= y1.max(y2))
 }
 
-fn is_point_inside(px: isize, py: isize, poly: &[(isize, isize)]) -> bool {
+fn is_point_inside(px: isize, py: isize, points: &[(isize, isize)]) -> bool {
     let mut inside = false;
-    for i in 0..poly.len() {
-        let (x1, y1) = poly[i];
-        let (x2, y2) = poly[(i + 1) % poly.len()];
+    for (&(x1, y1), &(x2, y2)) in points.iter().circular_tuple_windows() {
         if is_point_on_line(px, py, x1, y1, x2, y2) {
             return true;
         }
-        if (y1 > py) != (y2 > py) {
-            let dy = y2 - y1;
-            if dy != 0 {
-                let x_intersect = (x2 - x1) * (py - y1) / dy + x1;
-                if px < x_intersect {
-                    inside = !inside;
-                }
-            }
+        if (y1 > py) == (y2 > py) || y1 == y2 {
+            continue;
+        }
+        if px < (x2 - x1) * (py - y1) / (y2 - y1) + x1 {
+            inside = !inside;
         }
     }
     inside
