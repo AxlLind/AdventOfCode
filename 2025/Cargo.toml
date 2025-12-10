@@ -19,3 +19,4 @@ regex = "1.11"
 # lib proc-macro dependencies
 syn = { version = "2.0", features = ["full"] }
 quote = "1.0"
+good_lp = { version = "1.14.2", features = ["highs"], default-features = false }
