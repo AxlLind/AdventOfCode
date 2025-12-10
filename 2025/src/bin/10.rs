@@ -32,14 +32,11 @@ fn solve_p1(buttons: &[Vec<usize>], lights: &str) -> usize {
 fn solve_p2(buttons: &[Vec<usize>], jolts: &[usize]) -> usize {
     use good_lp::*;
     let mut vars = variables!();
-    for _ in 0..buttons.len() {
-        vars.add(variable().min(0).integer());
-    }
-    let press_vars = vars.iter_variables_with_def().map(|(v, _)| v).collect::<Vec<_>>();
+    let press_vars = (0..buttons.len())
+        .map(|_| vars.add(variable().min(0).integer()))
+        .collect::<Vec<_>>();
 
-    let mut problem = highs(vars.minimise(
-        (0..buttons.len()).fold(0.into_expression(), |acc, i| acc + press_vars[i])
-    ));
+    let mut problem = highs(vars.minimise(press_vars.iter().sum::<Expression>()));
     let mut exprs = vec![0.into_expression(); jolts.len()];
     for i in 0..buttons.len() {
         for &x in &buttons[i] {
@@ -49,7 +46,6 @@ fn solve_p2(buttons: &[Vec<usize>], jolts: &[usize]) -> usize {
     for (e, &j) in exprs.into_iter().zip(jolts) {
         problem.add_constraint(e.eq(j as f64));
     }
-
     let sol = problem.solve().unwrap();
     press_vars.iter().map(|&v| sol.value(v)).sum::<f64>() as _
 }
