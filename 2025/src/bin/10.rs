@@ -38,35 +38,23 @@ fn solve_p1((lights, buttons, _): &Machine) -> usize {
 
 fn solve_p2((_, buttons, jolts): &Machine) -> usize {
     use good_lp::*;
-    let num_vectors = buttons.len();
-    let dim = jolts.len();
-
-
-    // Create integer decision variables x[0], x[1], ..., x[num_vectors-1]
     let mut vars = variables!();
-    for i in 0..num_vectors {
+    for i in 0..buttons.len() {
         vars.add(variable().min(0).integer().name(format!("x{}", i)));
     }
     let press_vars = vars.iter_variables_with_def().map(|(v, _)| v).collect::<Vec<_>>();
 
-    // Objective: minimize sum of x_i
-    let problem = vars.minimise(
-        (0..num_vectors).fold(0.into_expression(), |acc, i| acc + press_vars[i])
-    );
-    let mut problem = highs(problem);
-
-    // For each dimension k, enforce exact sum:
-    //
-    //   sum_i (v_i[k] * x_i) == target[k]
-    //
-    for k in 0..dim {
-        let mut expr = 0.into_expression();
-        for i in 0..buttons.len() {
-            if buttons[i].contains(&k) {
-                expr = expr + press_vars[i];
-            }
+    let mut problem = highs(vars.minimise(
+        (0..buttons.len()).fold(0.into_expression(), |acc, i| acc + press_vars[i])
+    ));
+    let mut exprs = vec![0.into_expression(); jolts.len()];
+    for i in 0..buttons.len() {
+        for &x in &buttons[i] {
+            exprs[x] += press_vars[i];
         }
-        problem.add_constraint(expr.eq(jolts[k] as f64));
+    }
+    for (e, &j) in exprs.into_iter().zip(jolts) {
+        problem.add_constraint(e.eq(j as f64));
     }
 
     let sol = problem.solve().unwrap();
