@@ -15,7 +15,7 @@ fn count_paths<'a>(
     let key = (node, dac, fft);
     if !cache.contains_key(&key) {
         let res = g[node].iter().map(|n| count_paths(cache, g, n, dac, fft)).sum();
-        cache.insert((node, dac, fft), res);
+        cache.insert(key, res);
     }
     cache[&key]
 }
