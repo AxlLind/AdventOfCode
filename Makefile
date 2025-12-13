@@ -1,6 +1,4 @@
-define get_days
-	$(shell head -n1 $(1)/Makefile | cut -f 3- -d ' ')
-endef
+get_days = $(shell head -n1 $(1)/Makefile | cut -f 3- -d ' ')
 
 YEARS     := $(wildcard 20*)
 YEAR      := $(lastword $(YEARS))
@@ -17,8 +15,8 @@ $(TARGETS):
 
 help:
 	@echo 'usage: make [TARGET..]'
-	@echo 'Automatically downloads input, sets up files, and runs solutions.'
-	@echo 'Each year has a makefile you can use as well by cd into the year.'
+	@echo 'Automatically downloads input and runs solutions, e.g:'
+	@echo '  make 2025-03'
 	@echo
 	@echo 'TARGET:'
 	@echo '  YEAR-DAY  run a specific day   (e.g 2025-09)'
