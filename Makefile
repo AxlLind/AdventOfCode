@@ -12,17 +12,15 @@ TODAY     := $(shell TZ=America/New_York date +%Y%m%d)
 .DEFAULT_GOAL := $(or $(filter $(TODAY:$(YEAR)12%=%),$(YEAR_DAYS)),help)
 .PHONY: $(YEAR_DAYS) $(TARGETS) help
 
-$(YEAR_DAYS): %: $(YEAR)-%
-
 $(TARGETS):
 	@$(MAKE) --no-print-directory -C $(subst -, ,$@)
 
 help:
 	@echo 'usage: make [TARGET..]'
 	@echo 'Automatically downloads input, sets up files, and runs solutions.'
+	@echo 'Specify a specific day from a certain year or run all of them.'
 	@echo
 	@echo 'TARGET:'
-	@echo '  DAY       run a specific day from $(YEAR) (e.g 07)'
-	@echo '  YEAR-DAY  run a specific day           (e.g 2018-09)'
-	@echo '  YEAR-all  run all days                 (e.g 2022-all)'
+	@echo '  YEAR-DAY  run a specific day   (e.g 2025-09)'
+	@echo '  YEAR-all  run all days         (e.g 2022-all)'
 	@echo "During the AoC month just 'make' will run the current day's"
