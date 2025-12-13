@@ -1,6 +1,8 @@
 # Advent of Code :christmas_tree:
 My solutions to every single AoC problem. All the way from 2015 to today!
 
+![all-stars](./imgs/all-stars.png)
+
 Mostly in Rust :crab:
 
 ## Languages
