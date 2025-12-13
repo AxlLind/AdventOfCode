@@ -23,8 +23,7 @@ Year | Language
 # to be able to download inputs (see fetch.sh)
 export AOC_SESSION=[value from session cookie]
 
-make           # run todays (if in december 2024)
-make 01        # run a specific day in last years
+make           # run todays (if AOC is currently running)
 make 2018-09   # run a specific day
 make 2020-all  # run all from a specific year
 ```
