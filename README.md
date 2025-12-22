@@ -6,17 +6,17 @@ My solutions to every single AoC problem, most in Rust :crab: All the way from 2
 ## Languages
 Year | Language
 ---- | --------
-2025 | :crab: Rust
-2024 | :crab: Rust
-2023 | :crab: Rust
-2022 | :crab: Rust
-2021 | :crab: Rust
-2020 | :crab: Rust
-2019 | :crab: Rust
-2018 | :snake: Python
-2017 | <img width="20" height="20" alt="haskell" src="https://github.com/user-attachments/assets/16264c3d-2e39-4782-b424-32595ec34848" /> Haskell
-2016 | :camel: OCaml
-2015 | <img width="20" height="20" alt="clojure" src="https://github.com/user-attachments/assets/19678dbb-782e-40eb-944a-1850d2b724a1" /> Clojure
+[2025](./2025) | :crab: Rust
+[2024](./2024) | :crab: Rust
+[2023](./2023) | :crab: Rust
+[2022](./2022) | :crab: Rust
+[2021](./2021) | :crab: Rust
+[2020](./2020) | :crab: Rust
+[2019](./2019) | :crab: Rust
+[2018](./2018) | :snake: Python
+[2017](./2017) | <img width="20" height="20" alt="haskell" src="https://github.com/user-attachments/assets/16264c3d-2e39-4782-b424-32595ec34848" /> Haskell
+[2016](./2016) | :camel: OCaml
+[2015](./2015) | <img width="20" height="20" alt="clojure" src="https://github.com/user-attachments/assets/19678dbb-782e-40eb-944a-1850d2b724a1" /> Clojure
 
 ## Usage
 ```sh
